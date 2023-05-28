@@ -1,0 +1,12 @@
+version: '3'
+services:
+  frontend:
+    build: .
+    container_name: degen-mkp-fe
+    image: registry.gitlab.com/luckytech/degen-marketplace:latest
+    env_file: .env.development
+    ports:
+      - '3009:80'
+    volumes:
+      - ./:/frontend
+      - /frontend/node_modules

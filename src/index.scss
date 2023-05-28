@@ -1,0 +1,227 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+
+  background: #001919 !important;
+
+  .search__filter__dropdown {
+    background: #3263af;
+    border-radius: 12px;
+    color: #fff;
+
+    .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+      background: #3263af;
+    }
+
+    .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+      background: #3263af;
+    }
+
+    .ant-select-item-option-active {
+      background: #213d67af;
+    }
+
+    .ant-select-item-option-content {
+      color: #fff;
+      font-weight: 400;
+    }
+  }
+
+  iframe {
+    position: unset !important;
+  }
+  .ant-select-dropdown{
+    padding: 0px;
+    width: max-content !important;
+    .ant-select-item-option-content{
+      overflow: unset;
+      .token__option{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 60px;
+        img{
+          width: 20px;
+          margin-left:5px;
+        }
+      }
+    }
+
+  }
+
+  .ant-skeleton.ant-skeleton-active .ant-skeleton-button{
+    opacity: 0.4;
+  }
+  .ant-select-item{
+    background: #0e8170;
+    border-bottom: 1px solid #0fc1a9;
+  }
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled){
+    background: #0e8170;
+  }
+  .ant-select-item-option-active:not(.ant-select-item-option-disabled){
+    background: #0e8170;
+  }
+  .token__input-price{
+    display: flex;
+    align-items: center;
+    color: #fff;
+ 
+    img {
+      width: 15px;
+      margin-right: 5px;
+    }
+  }
+  .ant-tooltip-arrow{
+
+    .ant-tooltip-arrow-content{
+
+      background: #0E8170;
+      --antd-arrow-background-color:unset;
+    }
+  }
+  .ant-tooltip-inner{
+    background: #0E8170;
+    border: 1.25px solid rgba(12, 223, 194, 0.25);
+  }
+
+}
+
+body,
+.loader-container {
+  background: linear-gradient(0deg, rgba(218, 233, 255, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  width: 100%;
+  height: 100%;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+.loader-container {
+  position: relative;
+  z-index: 99999999;
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    max-width: 150px;
+    margin: 0 auto;
+    animation: loading 2s infinite;
+  }
+
+  .loading-animate {
+    font-weight: bold;
+    font-size: 40px;
+    text-transform: uppercase;
+    color: #067bbc;
+    letter-spacing: 44px;
+    padding-left: 48px;
+    display: block;
+
+    span {
+      margin-top: 1rem;
+      display: inline-block;
+      animation: wave-text 1s ease-in-out infinite;
+      white-space: nowrap;
+      text-align: center;
+
+      &:nth-of-type(1) {
+        animation-delay: 0s;
+      }
+
+      &:nth-of-type(2) {
+        animation-delay: 0.1s;
+      }
+
+      &:nth-of-type(3) {
+        animation-delay: 0.2s;
+      }
+
+      &:nth-of-type(4) {
+        animation-delay: 0.3s;
+      }
+
+      &:nth-of-type(5) {
+        animation-delay: 0.4s;
+      }
+
+      &:nth-of-type(6) {
+        animation-delay: 0.5s;
+      }
+
+      &:nth-of-type(7) {
+        animation-delay: 0.6s;
+      }
+    }
+  }
+}
+
+@keyframes wave-text {
+  0% {
+    transform: translateY(0em);
+  }
+
+  60% {
+    transform: translateY(-0.6em);
+  }
+
+  100% {
+    transform: translateY(0em);
+  }
+}
+
+@keyframes loading {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+#root {
+  overflow-x: hidden;
+  height: 100%;
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgb(255, 255, 255);
+    background-color: #ffffff;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: #f5f5f5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #0e8170;
+  }
+}
