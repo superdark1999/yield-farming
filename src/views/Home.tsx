@@ -14,15 +14,6 @@ export default function Home() {
 
   return (
     <HomeStyled>
-      {account ? (
-        <div>
-          <div>{account}</div>
-          <button onClick={logout}> logout</button>
-        </div>
-      ) : (
-        <button onClick={handleShowConnectWalletModel}>Connect wallet</button>
-      )}
-
       <div className="staking">
         <div className="staking-row">
           <div>total amount: </div>

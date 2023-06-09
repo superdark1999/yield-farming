@@ -1,3 +1,4 @@
+import Header from 'components/Header'
 import GlobalModal from 'components/molecules/GlobalModal/GlobalModal'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
@@ -18,6 +19,8 @@ const MarketplaceLayout: React.FC<Props> = ({ children }) => {
 
   return (
     <FullScreenStyled>
+      <Header />
+
       <GlobalModal />
       <div className="content">{children}</div>
     </FullScreenStyled>
