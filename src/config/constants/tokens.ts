@@ -4,6 +4,15 @@ const tokens = {
     projectLink: 'https://www.binance.com/',
   },
 
+  faucet: {
+    symbol: 'wBNB',
+    address: {
+      56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c',
+      97: '0x362b7c5f102561a004fBB4d76c70Cc31c58Fc420',
+    },
+    decimals: 18,
+    projectLink: 'https://pancakeswap.finance/',
+  },
   wbnb: {
     symbol: 'wBNB',
     address: {

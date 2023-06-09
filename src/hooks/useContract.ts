@@ -4,7 +4,7 @@ import { useActiveWeb3React } from 'hooks'
 import { useMemo } from 'react'
 import { getContract } from '../utils'
 import ERC20_ABI from '../constants/abis/erc20.json'
-import { getErc721Contract, getBep20Contract } from '../utils/contractHelpers'
+import { getErc721Contract, getBep20Contract, getStakingContract } from '../utils/contractHelpers'
 
 export function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
   const { library, account } = useActiveWeb3React()
@@ -33,4 +33,10 @@ export const useERC721 = (address: string) => {
   const { library } = useActiveWeb3React()
   const signer = library.getSigner()
   return useMemo(() => getErc721Contract(address, signer), [address, signer])
+}
+
+export const useStakingContract = () => {
+  const { library, chainId } = useActiveWeb3React()
+  const signer = library.getSigner()
+  return useMemo(() => getStakingContract(signer, chainId), [signer, chainId])
 }

@@ -21,3 +21,7 @@ export const getWbnbAddress = (chainId?: number) => {
 export const getBusdAddress = (chainId?: number) => {
   return getAddress(tokens.busd.address, chainId)
 }
+
+export const getStakingAddress = (chainId?: number) => {
+  return getAddress(addresses.staking, chainId)
+}

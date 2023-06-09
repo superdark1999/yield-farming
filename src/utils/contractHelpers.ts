@@ -1,11 +1,12 @@
 import bep20Abi from 'config/abi/erc20.json'
 import erc721Abi from 'config/abi/erc721.json'
-
 import multicall from 'config/abi/Multicall.json'
+import stakingAbi from 'config/abi/staking.json'
+
 import { ethers } from 'ethers'
 // Addresses
 import { ChainId } from 'constants/enums'
-import { getMulticallAddress } from 'utils/addressHelpers'
+import { getMulticallAddress, getStakingAddress } from 'utils/addressHelpers'
 import { simpleRpcProvider } from 'utils/providers'
 
 const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
@@ -22,4 +23,8 @@ export const getErc721Contract = (address: string, signer?: ethers.Signer | ethe
 
 export const getMulticallContract = (signer?: ethers.Signer | ethers.providers.Provider, chainId?: ChainId) => {
   return getContract(multicall, getMulticallAddress(), signer)
+}
+
+export const getStakingContract = (signer?: ethers.Signer | ethers.providers.Provider, chainId?: ChainId) => {
+  return getContract(stakingAbi, getStakingAddress(), signer)
 }
