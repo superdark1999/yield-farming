@@ -17,8 +17,6 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
 
-  background: #001919 !important;
-
   .search__filter__dropdown {
     background: #3263af;
     border-radius: 12px;
@@ -45,61 +43,57 @@ body {
   iframe {
     position: unset !important;
   }
-  .ant-select-dropdown{
+  .ant-select-dropdown {
     padding: 0px;
     width: max-content !important;
-    .ant-select-item-option-content{
+    .ant-select-item-option-content {
       overflow: unset;
-      .token__option{
+      .token__option {
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 60px;
-        img{
+        img {
           width: 20px;
-          margin-left:5px;
+          margin-left: 5px;
         }
       }
     }
-
   }
 
-  .ant-skeleton.ant-skeleton-active .ant-skeleton-button{
+  .ant-skeleton.ant-skeleton-active .ant-skeleton-button {
     opacity: 0.4;
   }
-  .ant-select-item{
+  .ant-select-item {
     background: #0e8170;
     border-bottom: 1px solid #0fc1a9;
   }
-  .ant-select-item-option-selected:not(.ant-select-item-option-disabled){
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
     background: #0e8170;
   }
-  .ant-select-item-option-active:not(.ant-select-item-option-disabled){
+  .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
     background: #0e8170;
   }
-  .token__input-price{
+  .token__input-price {
     display: flex;
     align-items: center;
     color: #fff;
- 
+
     img {
       width: 15px;
       margin-right: 5px;
     }
   }
-  .ant-tooltip-arrow{
-
-    .ant-tooltip-arrow-content{
-
-      background: #0E8170;
-      --antd-arrow-background-color:unset;
+  .ant-tooltip-arrow {
+    .ant-tooltip-arrow-content {
+      background: #0e8170;
+      --antd-arrow-background-color: unset;
     }
   }
-  .ant-tooltip-inner{
-    background: #0E8170;
+  .ant-tooltip-inner {
+    background: #0e8170;
     border: 1.25px solid rgba(12, 223, 194, 0.25);
   }
-
 }
 
 body,
