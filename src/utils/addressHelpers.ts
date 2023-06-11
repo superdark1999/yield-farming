@@ -25,3 +25,7 @@ export const getBusdAddress = (chainId?: number) => {
 export const getStakingAddress = (chainId?: number) => {
   return getAddress(addresses.staking, chainId)
 }
+
+export const getFaucetAddress = (chainId?: number) => {
+  return getAddress(tokens.faucet.address, chainId)
+}

@@ -6,31 +6,15 @@ import { USER_SLICE_NAME } from './constants'
 
 const initialState = {
   userTokenData: {
-    stf: {
+    faucet: {
       balance: '0',
-      allowance: '0',
       isAllowance: false,
-      isAllowanceBoxInteraction: false,
-    },
-    stfa: {
-      balance: '0',
-      allowance: '0',
-      isAllowance: false,
-      isAllowanceBoxInteraction: false,
-    },
-    busd: {
-      balance: '0',
-      allowance: '0',
-      isAllowance: false,
-      isAllowanceBoxInteraction: false,
     },
     bnb: {
       balance: '0',
     },
   },
 
-  isApprovalShoe: false,
-  isApprovalBox: false,
   isLoading: true,
   rebound: true,
   loaded: false,
@@ -72,7 +56,5 @@ export const getUserTokenDataSelector = (state: AppState) => state.user.userToke
 
 export const getUserReboundSelector = (state: AppState) => state.user.rebound
 export const getUserLoadingSelector = (state: AppState) => state.user.isLoading
-export const isApprovedShoeSelector = (state: State) => state.user.isApprovalShoe
-export const isApprovedBoxSelector = (state: State) => state.user.isApprovalBox
 export const { setUserState } = userSlice.actions
 export default userSlice.reducer

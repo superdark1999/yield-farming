@@ -15,19 +15,15 @@ export interface BlockState {
 
 export interface UserState {
   userTokenData: {
-    busd: {
+    faucet: {
       balance: string
-      allowance: string
       isAllowance: boolean
-      isAllowanceBoxInteraction: boolean
     }
     bnb: {
       balance: string
     }
   }
 
-  isApprovalShoe: boolean
-  isApprovalBox: boolean
   isLoading: boolean
   rebound: boolean
   loaded: boolean

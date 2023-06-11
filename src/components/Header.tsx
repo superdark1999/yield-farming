@@ -19,68 +19,19 @@ const tokenList = {
 }
 
 function Header() {
-  const [isCollapsed, setIsCollapsed] = useState(true)
-
   const { account } = useActiveWeb3React()
-  const isConnected = !!account
   const { logout } = useAuth()
-  const { bnb = { balance: 0 }, busd = { balance: 0 } } = useSelector(getUserTokenDataSelector)
-  const trimAccount = account ? `${account.slice(0, 4)}...${account.slice(38)}` : '0x00...0000' // account length: 42
+  const { bnb = { balance: 0 }, faucet = { balance: 0 } } = useSelector(getUserTokenDataSelector)
+  const trimAccount = account ? `${account.slice(0, 4)}...${account.slice(-4)}` : '0x00...0000' // account length: 42
   const bnbBalanceFormatted = addCommas(maxNumberAfterDot(utils.formatEther(bnb?.balance), 2))
-  const busdBalanceFormatted = addCommas(maxNumberAfterDot(utils.formatEther(busd?.balance), 2))
-  const handleClick = (e) => {
-    if (!isConnected) e.preventDefault()
-    setIsCollapsed(true)
-  }
+  const busdBalanceFormatted = addCommas(maxNumberAfterDot(utils.formatEther(faucet?.balance), 2))
 
   return (
     <HeaderStyled className={scroll ? 'active' : 'close'}>
       <div className="header">
         <div className="header__left">
-          <BoxMenu className={`${isCollapsed ? 'close' : 'active'}`}>
-            <div className="header__menu__content">
-              <div className="header__price mobile">
-                {!account ? (
-                  <div className="connect__mobile">
-                    <button
-                      className="header__button"
-                      type="submit"
-                      onClick={() => {
-                        GlobalModal.show(<ConnectWalletModal onClose={GlobalModal.hide} />)
-                      }}
-                    >
-                      <p>Connect wallet</p>
-                    </button>
-                  </div>
-                ) : (
-                  <div className="connect__mobile">
-                    <div className="account">
-                      <div className="account__left ">
-                        <img className="avatar" src="./images/connect/avatar.svg" alt="" />
-                        <span>{trimAccount}</span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                {!account ? (
-                  <></>
-                ) : (
-                  <>
-                    <div className="header__price--content">
-                      <p>{busdBalanceFormatted}</p>
-                      <img src={tokenList.faucet.img} alt="price.svg" />
-                    </div>
-                    <div className="header__price--content">
-                      <p>{bnbBalanceFormatted}</p>
-                      <img src={tokenList.bnb.img} alt="price.svg" />
-                    </div>
-                    <button className="header__button" type="submit" onClick={logout}>
-                      <p>Logout</p>
-                    </button>
-                  </>
-                )}
-              </div>
-            </div>
+          <BoxMenu>
+            <div className="header__menu__content"></div>
           </BoxMenu>
         </div>
 
@@ -164,30 +115,17 @@ const BoxMenu = styled.div`
     opacity: 1;
     transition: ease all 0.3s;
   }
-  @media (max-width: 375px) {
-    padding: 10px 0px;
-  }
 
-  @media (min-width: 769px) {
-    display: flex;
-    justify-content: flex-start;
-    z-index: 3;
-    position: unset;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-    background: transparent;
-    padding: 0;
-  }
-
-  .header__menu__content {
-    @media (max-width: 768px) {
-      height: 96%;
-      overflow-y: scroll;
-      padding-bottom: 20px;
-    }
-  }
+  display: flex;
+  justify-content: flex-start;
+  z-index: 3;
+  position: unset;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  background: transparent;
+  padding: 0;
 
   &.active {
     height: 90vh;
@@ -209,12 +147,6 @@ const BoxMenu = styled.div`
     }
   }
 
-  .header__price {
-    .connect__mobile {
-      padding: 0.8rem 0rem;
-    }
-  }
-
   .header__dashboard {
     position: relative;
     width: 160px;
@@ -228,23 +160,6 @@ const BoxMenu = styled.div`
     font-size: 1.2rem;
     font-weight: 500;
     white-space: nowrap;
-
-    @media (max-width: 1024px) {
-      width: 130px;
-      height: auto;
-      display: inline-block;
-    }
-    @media (max-width: 768px) {
-      width: 100%;
-      padding: 15px;
-
-      div {
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-    }
 
     &.active {
       background: #195151;
@@ -386,23 +301,11 @@ const HeaderStyled = styled.div`
       }
     }
   }
-  .header__logo {
-    /* @media (max-width: 1024px) {
-      margin-left: 40px;
-    } */
-  }
-
-  /* @media (min-width: 769px) {
-    display: flex;
-    justify-content: unset;
-  } */
 
   &.active {
-    @media (min-width: 769px) {
-      top: 0;
-      display: block;
-      transition-duration: 0.6s;
-    }
+    top: 0;
+    display: block;
+    transition-duration: 0.6s;
   }
 
   p {
@@ -423,10 +326,6 @@ const HeaderStyled = styled.div`
       justify-content: center;
       align-items: center;
       flex: 1;
-      /* overflow: hidden; */
-      @media (max-width: 768px) {
-        display: none;
-      }
     }
     &__logo {
       &-img {
@@ -513,65 +412,10 @@ const HeaderStyled = styled.div`
       padding: 5px;
       height: 46px;
 
-      @media (max-width: 768px) {
-        display: none;
-      }
-
-      &.mobile {
-        display: block;
-        width: 100%;
-        background: transparent;
-        margin-top: 40px;
-        @media (min-width: 769px) {
-          display: none;
-        }
-
-        @media (max-width: 375px) {
-          margin-top: 10px;
-        }
-
-        .connect__mobile {
-          margin-bottom: 20px;
-          .account {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            .account__left {
-              margin-right: 10px;
-              img {
-                margin-right: 5px;
-              }
-            }
-          }
-          .header__button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #0e8170;
-            color: #fff;
-
-            p {
-              display: flex;
-            }
-          }
-        }
-      }
-
       p {
         color: #fff;
         font-size: 16px;
         font-weight: 300;
-
-        @media (max-width: 769px) {
-          width: 61px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        @media (max-width: 768px) {
-          width: auto;
-        }
       }
 
       &--content {
@@ -579,16 +423,6 @@ const HeaderStyled = styled.div`
         justify-content: left;
         align-items: center;
         padding: 0px 12px;
-
-        @media (max-width: 768px) {
-          width: 60%;
-          margin: 0 auto;
-          margin-bottom: 15px;
-          justify-content: center;
-          background-color: #0e8170;
-          border-radius: 16px;
-          padding: 10px 20px;
-        }
 
         &:nth-child(1) {
           border-right: none;
@@ -612,20 +446,6 @@ const HeaderStyled = styled.div`
 
     &__account {
       padding: 0px 10px;
-
-      &.mobile {
-        display: block;
-
-        @media (min-width: 769px) {
-          display: none;
-        }
-        p {
-          width: 120px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-      }
 
       p {
         margin-bottom: 0;
