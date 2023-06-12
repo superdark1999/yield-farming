@@ -51,11 +51,7 @@ function Header() {
           <div className="header__right">
             <div className="header__price">
               <div className="header__price--content">
-                <p>
-                  {Number(busdBalanceFormatted.replace(/\,/g, '')) > 100000
-                    ? `${busdBalanceFormatted.slice(0, 3)}...${busdBalanceFormatted.slice(7)}`
-                    : `${busdBalanceFormatted}`}
-                </p>
+                <p>{busdBalanceFormatted} </p>
                 <img src={tokenList.faucet.img} alt="price.svg" />
               </div>
               <div className="header__price--content">

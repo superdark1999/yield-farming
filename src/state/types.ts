@@ -28,6 +28,18 @@ export interface UserState {
   rebound: boolean
   loaded: boolean
 }
+
+export interface StakingState {
+  staking: {
+    totalAmount: string
+    myStakeAmount: string
+    reward: string
+    withdrawDate: string
+  }
+  isLoading: boolean
+  rebound: boolean
+  loaded: boolean
+}
 export interface Sorts {
   price?: number // 1 for ascending and -1 for descending,
   // Below properties is default sort by descending

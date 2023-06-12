@@ -1,38 +1,44 @@
-import GlobalModal from 'components/molecules/GlobalModal/GlobalModal'
-import ConnectWalletModal from 'components/molecules/Modal/ConnectWalletModal/ConnectWalletModal'
-import useAccount from 'hooks/useAccount'
-import useAuth from 'hooks/useAuth'
+import { useApproveCallbackCustom } from 'hooks/useApprove'
+import useFetchStaking from 'hooks/useStaking'
+import useStake from 'hooks/useStaking copy'
+import { useSelector } from 'react-redux'
+import { getIsAllowanceSelector } from 'state/user/reducer'
 import styled from 'styled-components'
+import { getFaucetAddress, getStakingAddress } from 'utils/addressHelpers'
 
 export default function Home() {
-  const account = useAccount()
-  const handleShowConnectWalletModel = () => {
-    GlobalModal.show(<ConnectWalletModal onClose={GlobalModal.hide} />)
-  }
+  const { totalAmount, myStakeAmount, reward, withdrawDate } = useFetchStaking()
+  const isAllowance = useSelector(getIsAllowanceSelector)
+  const { onStake, onClaim, onWithdraw } = useStake()
 
-  const { logout } = useAuth()
+  console.log('isAllowance: ', isAllowance)
+  const { approve, isLoading } = useApproveCallbackCustom(getFaucetAddress(), getStakingAddress())
 
   return (
     <HomeStyled>
       <div className="staking">
         <div className="staking-row">
           <div>total amount: </div>
-          <div>100000</div>
+          <div>{totalAmount}</div>
         </div>
         <div className="staking-row">
           <div>your amount: </div>
-          <div>100000</div>
+          <div>{myStakeAmount}</div>
         </div>
         <div className="staking-row">
-          <div>reward: </div>
-          <div>100000</div>
+          <div>Estimate reward: </div>
+          <div>{reward}</div>
         </div>
         <div className="staking-row">
           <div>withdraw date: </div>
-          <div>12/12/2022</div>
+          <div>{withdrawDate}</div>
         </div>
         <div className="staking-row">
-          <button>Deposit</button>
+          {isAllowance ? (
+            <button>Deposit</button>
+          ) : (
+            <button onClick={approve}>{isLoading ? 'Loading' : 'Approve'}</button>
+          )}
           <button>withdraw</button>
         </div>
       </div>

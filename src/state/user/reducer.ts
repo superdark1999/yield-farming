@@ -53,6 +53,7 @@ export const userSlice = createSlice({
 
 export const getUserLoadedSelector = (state: AppState) => state.user.loaded
 export const getUserTokenDataSelector = (state: AppState) => state.user.userTokenData
+export const getIsAllowanceSelector = (state: AppState) => state.user.userTokenData.faucet.isAllowance
 
 export const getUserReboundSelector = (state: AppState) => state.user.rebound
 export const getUserLoadingSelector = (state: AppState) => state.user.isLoading

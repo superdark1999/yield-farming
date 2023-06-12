@@ -23,22 +23,34 @@ export const fetchUserTokenData = createAsyncThunk<any, any>(FETCH_USER_TOKEN, a
     const [faucetBalance, faucetAllowance] = await multicall(erc20ABI, calls, {
       requireSuccess: false,
     })
+
     return {
       userTokenData: {
+        faucet: {
+          balance: faucetBalance.toString(),
+          isAllowance: !!+faucetAllowance.toString(),
+        },
         bnb: {
           balance: bnbBalance.toString(),
         },
       },
+      rebound: false,
       loaded: true,
     }
   } catch (error) {
     console.log('error fetchGameUserTokenInfo', error)
     return {
       userTokenData: {
+        faucet: {
+          balance: '0',
+          isAllowance: '0',
+        },
         bnb: {
           balance: '0',
         },
       },
+      rebound: false,
+      loaded: true,
     }
   }
 })

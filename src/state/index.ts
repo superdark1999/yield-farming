@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import application from 'state/application/reducer'
 import user from './user/reducer'
+import staking from './staking/reducer'
 
 type MergedState = {
   user: {
@@ -19,6 +20,7 @@ const store = configureStore({
   reducer: {
     application,
     user,
+    staking,
   },
   // middleware: [...(getDefaultMiddleware({ thunk: false }) as any), save({ states: PERSISTED_KEYS })],
   // preloadedState: loadedState,
