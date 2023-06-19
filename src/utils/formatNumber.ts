@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js/bignumber'
+import { utils } from 'ethers'
 
 export const formatUnits = (n: BigNumber, s: number): BigNumber => {
   return new BigNumber(n).div(10 ** s)
@@ -26,4 +27,8 @@ export const maxNumberAfterDot = (s: string, n: number) => {
   const roundedPart = s.substring(0, s.lastIndexOf('.'))
 
   return roundedPart + '.' + decimalPart.substring(0, n)
+}
+
+export const formatBalance = (balance) => {
+  return addCommas(maxNumberAfterDot(utils.formatEther(balance), 2))
 }

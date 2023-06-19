@@ -10,20 +10,27 @@ export const fetchStakingData = createAsyncThunk<any, any>(FETCH_STAKING_DATA, a
   const stakingAddress = getStakingAddress()
 
   calls.push({ address: stakingAddress, name: 'users', params: [0, account] })
+  calls.push({ address: stakingAddress, name: 'pools', params: [0] })
 
   try {
-    const [userStakingData] = await multicall(stakingABI, calls, {
+    const [userStakingData, poolData] = await multicall(stakingABI, calls, {
       requireSuccess: false,
     })
-    const { amount, expectedInterestEndStaking } = userStakingData
 
-    console.log(userStakingData)
+    const { amount } = poolData
+    const { amount: userAmount, expectedInterestEndStaking, firstTimeDeposit } = userStakingData
+    console.log('userStakingData: ', userStakingData)
+
+    console.log(firstTimeDeposit.toString())
+
+    const unlockTime = (+firstTimeDeposit.toString() + 900) * 1000
+    console.log('unlockTime: ', unlockTime)
     return {
       staking: {
-        totalAmount: '0',
-        myStakeAmount: amount.toString(),
+        totalAmount: amount.toString(),
+        myStakeAmount: userAmount.toString(),
         reward: expectedInterestEndStaking.toString(),
-        withdrawDate: '0',
+        withdrawDate: unlockTime,
       },
       rebound: false,
       loaded: true,

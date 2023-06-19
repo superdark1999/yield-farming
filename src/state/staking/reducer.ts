@@ -10,6 +10,7 @@ const initialState = {
     myStakeAmount: '0',
     reward: '0',
     withdrawDate: '0',
+    pool: null,
   },
 
   isLoading: true,
