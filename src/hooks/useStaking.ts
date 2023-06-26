@@ -3,11 +3,15 @@ import { ethers } from 'ethers'
 import { useCallback, useState } from 'react'
 import { calculateGasMargin } from 'utils'
 import { useStakingContract } from './useContract'
+import { useAppDispatch } from 'state'
+import { setStakingState } from 'state/staking/reducer'
+import { setUserState } from 'state/user/reducer'
 
 const useStake = (poolId = 0) => {
   const [isLoading, setIsLoading] = useState(false)
   const { account } = useWeb3React()
   const stakingContract = useStakingContract()
+  const dispatch = useAppDispatch()
 
   const handleStake = useCallback(
     async (amount: string) => {
@@ -26,6 +30,8 @@ const useStake = (poolId = 0) => {
         })
 
         await txHash.wait()
+        dispatch(setStakingState({ rebound: true }))
+        dispatch(setUserState({ rebound: true }))
       } catch (error) {
         console.log('error handleStake', error)
       } finally {
@@ -41,6 +47,8 @@ const useStake = (poolId = 0) => {
 
       const txHash = await stakingContract.claim(poolId)
       await txHash.wait()
+      dispatch(setStakingState({ rebound: true }))
+      dispatch(setUserState({ rebound: true }))
     } catch (error) {
       console.log('error handleClaim', error)
     } finally {
@@ -54,6 +62,9 @@ const useStake = (poolId = 0) => {
 
       const txHash = await stakingContract.withdraw(poolId)
       await txHash.wait()
+
+      dispatch(setStakingState({ rebound: true }))
+      dispatch(setUserState({ rebound: true }))
     } catch (error) {
       console.log('error handleWithdraw', error)
     } finally {

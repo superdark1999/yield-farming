@@ -21,6 +21,7 @@ const useFetchStaking = () => {
       isFirstRender.current = false
       return
     }
+    console.log(rebound)
 
     if (rebound) dispatch(fetchStakingData(account))
   }, [account, rebound])

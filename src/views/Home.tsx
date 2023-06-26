@@ -18,7 +18,7 @@ const CustomButton = ({ isLoading, handleClick, title }) => {
 export default function Home() {
   const [amount, setAmount] = useState('0')
   const { totalAmount, myStakeAmount, reward, withdrawDate } = useFetchStaking()
-  console.log('withdrawDate: ', withdrawDate)
+  // console.log('withdrawDate: ', withdrawDate)
   const isAllowance = useSelector(getIsAllowanceSelector)
   const { onStake, onClaim, onWithdraw, isLoading: actionLoading } = useStake()
 

@@ -19,12 +19,10 @@ export const fetchStakingData = createAsyncThunk<any, any>(FETCH_STAKING_DATA, a
 
     const { amount } = poolData
     const { amount: userAmount, expectedInterestEndStaking, firstTimeDeposit } = userStakingData
-    console.log('userStakingData: ', userStakingData)
 
     console.log(firstTimeDeposit.toString())
 
     const unlockTime = (+firstTimeDeposit.toString() + 900) * 1000
-    console.log('unlockTime: ', unlockTime)
     return {
       staking: {
         totalAmount: amount.toString(),
