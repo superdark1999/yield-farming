@@ -6,6 +6,7 @@ import { useStakingContract } from './useContract'
 import { useAppDispatch } from 'state'
 import { setStakingState } from 'state/staking/reducer'
 import { setUserState } from 'state/user/reducer'
+import { notification } from 'antd'
 
 const useStake = (poolId = 0) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -51,6 +52,10 @@ const useStake = (poolId = 0) => {
       dispatch(setUserState({ rebound: true }))
     } catch (error) {
       console.log('error handleClaim', error)
+      notification.error({
+        message: 'Failed',
+        description: 'Failed to claim token',
+      })
     } finally {
       setIsLoading(false)
     }
@@ -67,6 +72,10 @@ const useStake = (poolId = 0) => {
       dispatch(setUserState({ rebound: true }))
     } catch (error) {
       console.log('error handleWithdraw', error)
+      notification.error({
+        message: 'Failed',
+        description: 'Failed to withdraw token',
+      })
     } finally {
       setIsLoading(false)
     }
