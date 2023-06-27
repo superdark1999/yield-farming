@@ -31,7 +31,9 @@ function Header() {
       <div className="header">
         <div className="header__left">
           <BoxMenu>
-            <div className="header__menu__content"></div>
+            <div className="header__menu__content">
+              <p style={{ fontSize: '30px' }}>Yield Farming</p>
+            </div>
           </BoxMenu>
         </div>
 
@@ -319,9 +321,8 @@ const HeaderStyled = styled.div`
     height: 100%;
     .header__right {
       display: flex;
-      justify-content: center;
+      justify-content: end;
       align-items: center;
-      flex: 1;
     }
     &__logo {
       &-img {
