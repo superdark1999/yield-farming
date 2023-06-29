@@ -1,5 +1,3 @@
-import React from 'react'
-import { isMobile } from 'react-device-detect'
 import styled, { keyframes } from 'styled-components'
 
 const LoadingFullScreen = (props) => {
